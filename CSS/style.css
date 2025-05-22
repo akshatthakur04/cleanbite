@@ -1,0 +1,28 @@
+/* Fill the viewport */
+html,body,#map{margin:0;height:100%;width:100%}
+
+body{font-family:system-ui,Arial,sans-serif}
+
+header{
+  position:absolute;
+  top:0;left:0;right:0;
+  z-index:1;
+  background:#ffffffdd;      /* translucent white */
+  padding:.5rem 1rem;
+  backdrop-filter:blur(6px);
+  box-shadow:0 1px 4px #0002;
+}
+
+header h1{
+  margin:0;
+  font-size:1.1rem;
+}
+
+.marker{
+  width:16px;height:16px;
+  border-radius:50%;
+  cursor:pointer;
+}
+
+.popup h3{margin:0 0 .25rem;font-size:1rem}
+.popup p {margin:.25rem 0;font-size:.85rem;line-height:1.25}

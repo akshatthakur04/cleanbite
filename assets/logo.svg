@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#2ecc71;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#27ae60;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Clean icon -->
+  <circle cx="25" cy="30" r="18" fill="url(#gradient)" stroke="#fff" stroke-width="2"/>
+  <path d="M17 30 L22 35 L33 24" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Text -->
+  <text x="55" y="25" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#2c3e50">Clean</text>
+  <text x="55" y="45" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#27ae60">Bite</text>
+  
+  <!-- Sparkle elements -->
+  <circle cx="170" cy="15" r="2" fill="#f1c40f"/>
+  <circle cx="180" cy="25" r="1.5" fill="#f39c12"/>
+  <circle cx="185" cy="45" r="1" fill="#f1c40f"/>
+</svg> 

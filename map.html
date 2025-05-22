@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant Map – CleanBite</title>
+  
+  <!-- Mapbox GL JS -->
+  <link href="https://unpkg.com/mapbox-gl@3.3.0/dist/mapbox-gl.css" rel="stylesheet">
+  <script src="https://unpkg.com/mapbox-gl@3.3.0/dist/mapbox-gl.js"></script>
+  <!-- Fuse.js for fuzzy search -->
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
+  <!-- Mapbox Geocoder plugin -->
+  <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.css"/>
+  <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.min.js"></script>
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Site styles -->
+  <link rel="stylesheet" href="CSS/map.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="map-header">
+    <div class="header-content">
+      <a href="index.html" class="logo-link">
+        <img src="assets/logo.svg" alt="CleanBite" class="header-logo">
+      </a>
+      
+      <div class="search-container">
+        <div class="search-box">
+          <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="M21 21l-4.35-4.35"/>
+          </svg>
+          <input type="text" id="searchInput" placeholder="Search restaurants by name, type, or rating..." autocomplete="off">
+          <button id="clearSearch" class="clear-btn" style="display: none;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div id="chips" class="chips-container"></div>
+        <ul id="suggestions" class="suggestions-list"></ul>
+        
+        <div class="filter-controls">
+          <select id="ratingFilter" class="filter-select">
+            <option value="">All Ratings</option>
+            <option value="5">5 Stars</option>
+            <option value="4">4+ Stars</option>
+            <option value="3">3+ Stars</option>
+            <option value="2">2+ Stars</option>
+            <option value="1">1+ Stars</option>
+          </select>
+          
+          <select id="typeFilter" class="filter-select">
+            <option value="">All Types</option>
+            <option value="Restaurant/Cafe/Canteen">Restaurant/Cafe</option>
+            <option value="Takeaway/sandwich shop">Takeaway</option>
+            <option value="Pub/bar/nightclub">Pub/Bar</option>
+            <option value="Hotel/bed & breakfast/guest house">Hotel/B&B</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="header-actions">
+        <button id="toggleView" class="view-toggle">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7"/>
+            <rect x="14" y="3" width="7" height="7"/>
+            <rect x="14" y="14" width="7" height="7"/>
+            <rect x="3" y="14" width="7" height="7"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+  
+  <!-- Main Content -->
+  <main class="map-container">
+    <!-- Map -->
+    <div id="map" class="map-view"></div>
+    
+    <!-- Loading Spinner -->
+    <div id="loading" class="loading-overlay">
+      <div class="spinner"></div>
+      <p>Loading restaurants...</p>
+    </div>
+    
+    <!-- Restaurant Panel -->
+    <div id="restaurantPanel" class="restaurant-panel">
+      <div class="panel-header">
+        <h3 id="panelTitle">Restaurant Details</h3>
+        <button id="closePanel" class="close-btn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      
+      <div class="panel-content" id="panelContent">
+        <p class="empty-state">Click on a restaurant marker to view details</p>
+      </div>
+    </div>
+    
+    <!-- Search Results -->
+    <div id="searchResults" class="search-results" style="display: none;">
+      <div class="results-header">
+        <h4>Search Results</h4>
+        <span id="resultsCount" class="results-count"></span>
+      </div>
+      <div id="resultsList" class="results-list"></div>
+    </div>
+  </main>
+  
+  <!-- Legend -->
+  <div class="legend">
+    <h4>Hygiene Rating</h4>
+    <div class="legend-items">
+      <div class="legend-item">
+        <div class="legend-marker excellent"></div>
+        <span>Excellent (4-5)</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-marker good"></div>
+        <span>Good (3)</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-marker poor"></div>
+        <span>Poor (1-2)</span>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Scripts -->
+  <script src="js/map-app.js"></script>
+</body>
+</html> 
